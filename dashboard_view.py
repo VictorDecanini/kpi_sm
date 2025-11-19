@@ -111,7 +111,7 @@ def header_com_filtros(df):
             <div class="header-container" style="display:flex; align-items:center; gap:10px;">
                 <img src="data:image/png;base64,{logo_base64}" 
                      alt="Scanntech Logo" width="140">
-                <h2 style="margin:0; color:#054FE1;">Acompanhamento KPI ScannMarket</h2>
+                <h2 style="margin:100; color:#054FE1;">Acompanhamento KPI ScannMarket</h2>
             </div>
         """
     except FileNotFoundError:
@@ -374,7 +374,7 @@ def mostrar_kpi_cards(data, df_fonte=None):
     with col3:
         st.markdown(f"""
         <div style="{card_style}">
-            <div style="color:#555; font-size:0.9rem;">Fabricantes Únicos (Julho+)</div>
+            <div style="color:#555; font-size:0.9rem;">Fabricantes</div>
             <div style="font-size:1.4rem; font-weight:700; color:{laranja};">
                 {fabricantes_unicos}
             </div>
@@ -408,7 +408,7 @@ def mostrar_kpi_cards(data, df_fonte=None):
     with col4:
         st.markdown(f"""
         <div style="{card_style}">
-            <div style="color:#555; font-size:0.9rem;">Categorias Únicas (Julho+)</div>
+            <div style="color:#555; font-size:0.9rem;">Categorias</div>
             <div style="font-size:1.4rem; font-weight:700; color:{azul};">
                 {categorias_unicas}
             </div>
@@ -452,7 +452,7 @@ def mostrar_kpi_cards(data, df_fonte=None):
     with col5:
         st.markdown(f"""
         <div style="{card_style}">
-            <div style="color:#555; font-size:0.9rem;">Solicitações Totais (desde Jul/25)</div>
+            <div style="color:#555; font-size:0.9rem;">Solicitações Totais</div>
             <div style="font-size:1.4rem; font-weight:700; color:{azul};">
                 {total_desde_jul}
             </div>
