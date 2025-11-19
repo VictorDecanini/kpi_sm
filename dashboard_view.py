@@ -109,11 +109,9 @@ def header_com_filtros(df):
             logo_base64 = base64.b64encode(f.read()).decode("utf-8")
         logo_html = f"""
             <div class="header-container" style="display:flex; align-items:center; gap:10px; position:relative;">
-                
                 <!-- LOGO alinhado à esquerda -->
                 <img src="data:image/png;base64,{logo_base64}" 
                     alt="Scanntech Logo" width="140" style="z-index:2;">
-
                 <!-- TÍTULO CENTRALIZADO ABSOLUTO -->
                 <h2 style="
                     margin:0; 
@@ -125,7 +123,6 @@ def header_com_filtros(df):
                 ">
                     Acompanhamento KPI ScannMarket
                 </h2>
-
             </div>
         """
 
