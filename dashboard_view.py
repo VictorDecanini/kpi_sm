@@ -82,71 +82,80 @@ def header_com_filtros(df):
             break
 
     # --- CSS visual do header ---
-    st.markdown(
-        """
-        <div style="
-            display: flex; 
-            align-items: center; 
+    st.markdown("""
+        <style>
+        .header-container {
+            display: flex;
+            align-items: center;
             justify-content: space-between;
-            width: 100%;
-            padding: 10px 0;
-        ">
-            <!-- LOGO ESQUERDA -->
-            <img src="https://i.imgur.com/qsQ5qQK.png" alt="Logo" style="height:50px;">
-            <!-- TÍTULO CENTRALIZADO -->
-            <div style="
-                flex: 1;
-                text-align: center;
-                font-size: 2rem;
-                font-weight: 700;
-            ">
-                Acompanhamento KPI ScannMarket
-            </div>
-            <!-- ESPAÇO VAZIO DIREITA PARA EQUILIBRAR O FLEX -->
-            <div style="width:50px;"></div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+            background-color: #f8f9fa;
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
+            margin-bottom: 0.8rem;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 160px;
+        }
+        .header-title {
+            flex: 1;
+            text-align: center;
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #054FE1;
+            white-space: nowrap;
+        }
+        .header-right {
+            width: 160px; /* Apenas para equilibrar o flex e forçar centralização real */
+        }
+        .header-logo {
+            height: 42px;
+        }
+        </style>
+    """, unsafe_allow_html=True)
 
-    # --- LOGO local (arquivo na pasta do projeto) ---
-    # --- Carrega logo local em base64 ---
+    # --- LOGO local ---
     logo_path = "scanntech_logo.png"
     try:
         with open(logo_path, "rb") as f:
             logo_base64 = base64.b64encode(f.read()).decode("utf-8")
+
         logo_html = f"""
-            <div class="header-container" style="display:flex; align-items:center; gap:10px; position:relative;">
-                <!-- LOGO alinhado à esquerda -->
-                <img src="data:image/png;base64,{logo_base64}" 
-                    alt="Scanntech Logo" width="140" style="z-index:2;">
-                <!-- TÍTULO CENTRALIZADO ABSOLUTO -->
-                <h2 style="
-                    margin:0; 
-                    color:#054FE1; 
-                    position:absolute; 
-                    left:50%; 
-                    transform:translateX(-50%);
-                    white-space:nowrap;
-                ">
+            <div class="header-container">
+                <!-- COLUNA ESQUERDA (LOGO) -->
+                <div class="header-left">
+                    <img src="data:image/png;base64,{logo_base64}" 
+                        alt="Scanntech Logo" width="140" class="header-logo">
+                </div>
+                <!-- COLUNA CENTRAL (TÍTULO CENTRALIZADO) -->
+                <div class="header-title">
                     Acompanhamento KPI ScannMarket
-                </h2>
+                </div>
+                <!-- COLUNA DIREITA (VAZIA PARA EQUILIBRAR) -->
+                <div class="header-right"></div>
             </div>
         """
 
     except FileNotFoundError:
         logo_html = """
-            <div class="header-container" style="display:flex; align-items:center; gap:10px;">
-                <div style="width:140px; height:40px; background:#ccc; text-align:center; line-height:40px;">
-                    (sem logo)
+            <div class="header-container">
+                <div class="header-left">
+                    <div style="width:140px; height:40px; background:#ccc; text-align:center; line-height:40px;">
+                        (sem logo)
+                    </div>
                 </div>
-                <h2 style="margin:0; color:#054FE1; text-align:center; flex:1;">
+                <div class="header-title">
                     Acompanhamento KPI ScannMarket
-                </h2>
+                </div>
+                <div class="header-right"></div>
             </div>
         """
 
     st.markdown(logo_html, unsafe_allow_html=True)
+
 
     # --- Filtros (4 colunas alinhadas) ---
     cols = st.columns([1, 1, 1, 1])
