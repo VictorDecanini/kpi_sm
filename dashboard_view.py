@@ -756,7 +756,7 @@ def grafico_pizza_status(df, mask):
 
     fig.update_layout(
         title=dict(x=0.02, font=dict(size=16, color="#054FE1"))
-        margin=dict(t=20)
+        margin=dict(t=5)
     )
     fig.update_traces(textposition="inside", textinfo="percent", textfont_size=14)
     st.plotly_chart(fig, use_container_width=True)
