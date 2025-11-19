@@ -111,7 +111,9 @@ def header_com_filtros(df):
             <div class="header-container" style="display:flex; align-items:center; gap:10px;">
                 <img src="data:image/png;base64,{logo_base64}" 
                      alt="Scanntech Logo" width="140">
-                <h2 style="margin:100; color:#054FE1;">Acompanhamento KPI ScannMarket</h2>
+                <h2 style="margin:0; color:#054FE1; text-align:center; flex:1;">
+                    Acompanhamento KPI ScannMarket
+                </h2>
             </div>
         """
     except FileNotFoundError:
@@ -120,7 +122,9 @@ def header_com_filtros(df):
                 <div style="width:140px; height:40px; background:#ccc; text-align:center; line-height:40px;">
                     (sem logo)
                 </div>
-                <h2 style="margin:0; color:#054FE1;">Acompanhamento KPI ScannMarket</h2>
+                <h2 style="margin:0; color:#054FE1; text-align:center; flex:1;">
+                    Acompanhamento KPI ScannMarket
+                </h2>
             </div>
         """
 
