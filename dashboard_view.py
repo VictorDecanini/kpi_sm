@@ -417,9 +417,6 @@ def mostrar_kpi_cards(data, df_fonte=None):
         """, unsafe_allow_html=True)
 
     # ============================================================
-    # CARD 5 — TOTAL DE SOLICITAÇÕES (MÊS) + MÉDIA MENSAL
-    # ============================================================
-        # ============================================================
     # CARD 5 — TOTAL DESDE JUL/25 + MÊS ATUAL + MÉDIA MENSAL
     # ============================================================
     total_desde_jul = "-"
@@ -437,7 +434,7 @@ def mostrar_kpi_cards(data, df_fonte=None):
 
         if not df_desde_jul.empty:
             # Total desde julho
-            total_desde_jul = len(df_desde_jul)
+            total_desde_jul = str(len(df_desde_jul))
 
             # --- 2) Total do mês atual ---
             hoje = datetime.now()
@@ -445,16 +442,18 @@ def mostrar_kpi_cards(data, df_fonte=None):
                 (df_desde_jul["DATA_SOLICITACAO"].dt.month == hoje.month) &
                 (df_desde_jul["DATA_SOLICITACAO"].dt.year == hoje.year)
             ]
-            total_mes_atual = len(df_mes)
+            total_mes_atual = str(len(df_mes))
 
             # --- 3) Média mensal ---
             df_desde_jul["ANO_MES"] = df_desde_jul["DATA_SOLICITACAO"].dt.to_period("M")
-            media_mensal = round(df_desde_jul.groupby("ANO_MES").size().mean(), 1)
+            media_calc = df_desde_jul.groupby("ANO_MES").size().mean()
+            media_mensal = f"{media_calc:.1f}"
 
     with col5:
         st.markdown(f"""
         <div style="{card_style}">
             <div style="color:#555; font-size:0.9rem;">Solicitações Totais (desde Jul/25)</div>
+            
             <div style="font-size:1.4rem; font-weight:700; color:{azul};">
                 {total_desde_jul}
             </div>
@@ -462,11 +461,13 @@ def mostrar_kpi_cards(data, df_fonte=None):
             <div style="font-size:0.85rem; color:#666; margin-top:6px;">
                 Mês atual: {total_mes_atual}
             </div>
+            
             <div style="font-size:0.85rem; color:#666;">
                 Média mensal: {media_mensal}
             </div>
         </div>
         """, unsafe_allow_html=True)
+
 
 # ------------------------------------------------------------
 # 3️⃣ Gráfico de Solicitações por BU (com rótulos e estilo Scanntech)
