@@ -5,3 +5,6 @@ openpyxl
 xlsxwriter
 plotly
 unicodedata
+math
+datetime
+base64
