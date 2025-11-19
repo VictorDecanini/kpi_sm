@@ -419,40 +419,54 @@ def mostrar_kpi_cards(data, df_fonte=None):
     # ============================================================
     # CARD 5 — TOTAL DE SOLICITAÇÕES (MÊS) + MÉDIA MENSAL
     # ============================================================
-    total_mes = "-"
-    media_atendidas = "-"
+        # ============================================================
+    # CARD 5 — TOTAL DESDE JUL/25 + MÊS ATUAL + MÉDIA MENSAL
+    # ============================================================
+    total_desde_jul = "-"
+    total_mes_atual = "-"
+    media_mensal = "-"
 
     if df_for_calc is not None and "DATA_SOLICITACAO" in df_for_calc.columns:
+
         df_aux = df_for_calc.copy()
         df_aux["DATA_SOLICITACAO"] = pd.to_datetime(df_aux["DATA_SOLICITACAO"], errors="coerce")
 
-        hoje = datetime.now()
+        # --- 1) Filtrar desde JULHO/2025 ---
+        inicio = pd.Timestamp(2025, 7, 1)
+        df_desde_jul = df_aux[df_aux["DATA_SOLICITACAO"] >= inicio]
 
-        # solicitações no mês atual
-        mes_vig = df_aux[
-            (df_aux["DATA_SOLICITACAO"].dt.month == hoje.month) &
-            (df_aux["DATA_SOLICITACAO"].dt.year == hoje.year)
-        ]
+        if not df_desde_jul.empty:
+            # Total desde julho
+            total_desde_jul = len(df_desde_jul)
 
-        if not mes_vig.empty:
-            total_mes = len(mes_vig)
+            # --- 2) Total do mês atual ---
+            hoje = datetime.now()
+            df_mes = df_desde_jul[
+                (df_desde_jul["DATA_SOLICITACAO"].dt.month == hoje.month) &
+                (df_desde_jul["DATA_SOLICITACAO"].dt.year == hoje.year)
+            ]
+            total_mes_atual = len(df_mes)
 
-        # média mensal total (todas as solicitações agrupadas por mês)
-        df_aux["ANO_MES"] = df_aux["DATA_SOLICITACAO"].dt.to_period("M")
-        media_atendidas = round(df_aux.groupby("ANO_MES").size().mean(), 1)
+            # --- 3) Média mensal ---
+            df_desde_jul["ANO_MES"] = df_desde_jul["DATA_SOLICITACAO"].dt.to_period("M")
+            media_mensal = round(df_desde_jul.groupby("ANO_MES").size().mean(), 1)
 
     with col5:
         st.markdown(f"""
         <div style="{card_style}">
-            <div style="color:#555; font-size:0.9rem;">Solicitações (Mês)</div>
-            <div style="font-size:1.4rem; font-weight:700;">
-                {total_mes}
+            <div style="color:#555; font-size:0.9rem;">Solicitações Totais (desde Jul/25)</div>
+            <div style="font-size:1.4rem; font-weight:700; color:{azul};">
+                {total_desde_jul}
             </div>
-            <div style="font-size:0.85rem; color:#666;">Média mensal: {media_atendidas}</div>
+
+            <div style="font-size:0.85rem; color:#666; margin-top:6px;">
+                Mês atual: {total_mes_atual}
+            </div>
+            <div style="font-size:0.85rem; color:#666;">
+                Média mensal: {media_mensal}
+            </div>
         </div>
         """, unsafe_allow_html=True)
-
-
 
 # ------------------------------------------------------------
 # 3️⃣ Gráfico de Solicitações por BU (com rótulos e estilo Scanntech)
