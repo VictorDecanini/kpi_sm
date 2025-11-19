@@ -108,14 +108,27 @@ def header_com_filtros(df):
         with open(logo_path, "rb") as f:
             logo_base64 = base64.b64encode(f.read()).decode("utf-8")
         logo_html = f"""
-            <div class="header-container" style="display:flex; align-items:center; gap:10px;">
+            <div class="header-container" style="display:flex; align-items:center; gap:10px; position:relative;">
+                
+                <!-- LOGO alinhado à esquerda -->
                 <img src="data:image/png;base64,{logo_base64}" 
-                     alt="Scanntech Logo" width="140">
-                <h2 style="margin:0; color:#054FE1; text-align:center; flex:1;">
+                    alt="Scanntech Logo" width="140" style="z-index:2;">
+
+                <!-- TÍTULO CENTRALIZADO ABSOLUTO -->
+                <h2 style="
+                    margin:0; 
+                    color:#054FE1; 
+                    position:absolute; 
+                    left:50%; 
+                    transform:translateX(-50%);
+                    white-space:nowrap;
+                ">
                     Acompanhamento KPI ScannMarket
                 </h2>
+
             </div>
         """
+
     except FileNotFoundError:
         logo_html = """
             <div class="header-container" style="display:flex; align-items:center; gap:10px;">
