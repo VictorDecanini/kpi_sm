@@ -75,6 +75,8 @@ with dashboard_container:
             dv.grafico_linhas_por_tipo(df_tratada, mask)
 
     with col_pizza:
+    # Ajuste para alinhar o título com o gráfico da esquerda
+        st.markdown("<div style='margin-top:-28px'></div>", unsafe_allow_html=True)
         dv.grafico_pizza_status(df_tratada, mask)
 
 
