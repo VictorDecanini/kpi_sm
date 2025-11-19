@@ -93,7 +93,6 @@ def header_com_filtros(df):
         ">
             <!-- LOGO ESQUERDA -->
             <img src="https://i.imgur.com/qsQ5qQK.png" alt="Logo" style="height:50px;">
-
             <!-- TÍTULO CENTRALIZADO -->
             <div style="
                 flex: 1;
@@ -103,7 +102,6 @@ def header_com_filtros(df):
             ">
                 Acompanhamento KPI ScannMarket
             </div>
-
             <!-- ESPAÇO VAZIO DIREITA PARA EQUILIBRAR O FLEX -->
             <div style="width:50px;"></div>
         </div>
