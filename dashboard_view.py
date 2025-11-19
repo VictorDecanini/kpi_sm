@@ -82,24 +82,34 @@ def header_com_filtros(df):
             break
 
     # --- CSS visual do header ---
-    st.markdown("""
-        <style>
-        .header-container {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 16px;
-            background-color: #f8f9fa;
-            padding: 0.8rem 1.2rem;
-            border-radius: 12px;
-            box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
-            margin-bottom: 0.8rem;
-        }
-        .header-logo {
-            height: 42px;
-        }
-        </style>
-    """, unsafe_allow_html=True)
+    st.markdown(
+        """
+        <div style="
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
+            width: 100%;
+            padding: 10px 0;
+        ">
+            <!-- LOGO ESQUERDA -->
+            <img src="https://i.imgur.com/qsQ5qQK.png" alt="Logo" style="height:50px;">
+
+            <!-- TÍTULO CENTRALIZADO -->
+            <div style="
+                flex: 1;
+                text-align: center;
+                font-size: 2rem;
+                font-weight: 700;
+            ">
+                Acompanhamento KPI ScannMarket
+            </div>
+
+            <!-- ESPAÇO VAZIO DIREITA PARA EQUILIBRAR O FLEX -->
+            <div style="width:50px;"></div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
     # --- LOGO local (arquivo na pasta do projeto) ---
     # --- Carrega logo local em base64 ---
