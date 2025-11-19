@@ -453,15 +453,12 @@ def mostrar_kpi_cards(data, df_fonte=None):
         st.markdown(f"""
         <div style="{card_style}">
             <div style="color:#555; font-size:0.9rem;">Solicitações Totais (desde Jul/25)</div>
-            
             <div style="font-size:1.4rem; font-weight:700; color:{azul};">
                 {total_desde_jul}
             </div>
-
             <div style="font-size:0.85rem; color:#666; margin-top:6px;">
                 Mês atual: {total_mes_atual}
             </div>
-            
             <div style="font-size:0.85rem; color:#666;">
                 Média mensal: {media_mensal}
             </div>
