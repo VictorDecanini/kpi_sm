@@ -465,7 +465,8 @@ def mostrar_kpi_cards(data, df_fonte=None):
 
         if not df_desde_jul.empty:
             # Total desde julho
-            total_desde_jul = str(len(df_desde_jul))
+            # total_desde_jul = str(len(df_desde_jul))
+            total_desde_jul = df_desde_jul['QTDE_QUEST'].sum()
 
             # --- 2) Total do mês atual ---
             hoje = datetime.now()
