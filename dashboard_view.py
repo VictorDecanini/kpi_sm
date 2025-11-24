@@ -466,7 +466,7 @@ def mostrar_kpi_cards(data, df_fonte=None):
         if not df_desde_jul.empty:
             # Total desde julho
             # total_desde_jul = str(len(df_desde_jul))
-            total_desde_jul = df_desde_jul['QTDE_QUEST'].sum()
+            total_desde_jul = str(df_desde_jul['QTDE_QUEST'].sum())
 
             # --- 2) Total do mês atual ---
             hoje = datetime.now()
@@ -474,7 +474,8 @@ def mostrar_kpi_cards(data, df_fonte=None):
                 (df_desde_jul["DATA_SOLICITACAO"].dt.month == hoje.month) &
                 (df_desde_jul["DATA_SOLICITACAO"].dt.year == hoje.year)
             ]
-            total_mes_atual = str(len(df_mes))
+            # total_mes_atual = str(len(df_mes))
+            total_mes_atual = str(df_mes['QTDE_QUEST'].sum())
 
             # --- 3) Média mensal ---
             df_desde_jul["ANO_MES"] = df_desde_jul["DATA_SOLICITACAO"].dt.to_period("M")
