@@ -480,7 +480,7 @@ def mostrar_kpi_cards(data, df_fonte=None):
             # --- 3) Média mensal ---
             df_desde_jul["ANO_MES"] = df_desde_jul["DATA_SOLICITACAO"].dt.to_period("M")
             media_calc = df_desde_jul.groupby("ANO_MES").size().mean()
-            media_mensal = f"{media_calc:.1f}"
+            media_mensal = f"{media_calc:.0f}"
 
     with col5:
         st.markdown(f"""
